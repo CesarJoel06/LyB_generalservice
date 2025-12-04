@@ -94,9 +94,11 @@ img {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 20;
+  left: 0;
+  right: 0;
+  z-index: 99999;
   backdrop-filter: blur(24px);
   background: rgba(244, 247, 251, 0.9);
   border-bottom: 1px solid var(--border-subtle);
