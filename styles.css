@@ -94,11 +94,9 @@ img {
 }
 
 .site-header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 99999;
+  z-index: 20;
   backdrop-filter: blur(24px);
   background: rgba(244, 247, 251, 0.9);
   border-bottom: 1px solid var(--border-subtle);
@@ -810,3 +808,19 @@ section { padding: 100px 40px; }
   display: block;
 }
 
+
+
+/* === v7: Prevent scroll on body when gallery open === */
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh;
+}
+
+/* Ensure modal and close button are always on top */
+.gallery-modal {
+  z-index: 100000 !important;
+}
+
+.gallery-close {
+  z-index: 100001 !important;
+}

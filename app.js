@@ -294,3 +294,27 @@ document.querySelectorAll("#mobile-menu a").forEach(a=>{
   });
 });
 
+
+
+// === v7: Disable body scroll when gallery opens ===
+const galleryModal = document.querySelector("[data-gallery-modal]");
+const galleryOverlay = document.querySelector("[data-gallery-overlay]");
+
+function disableScroll(){
+  document.body.classList.add("no-scroll");
+}
+function enableScroll(){
+  document.body.classList.remove("no-scroll");
+}
+
+// Hook into existing modal open / close
+if(galleryModal){
+  const observer = new MutationObserver(()=>{
+    if(galleryModal.classList.contains("is-visible")){
+        disableScroll();
+    } else {
+        enableScroll();
+    }
+  });
+  observer.observe(galleryModal, { attributes: true });
+}
