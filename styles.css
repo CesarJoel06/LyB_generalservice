@@ -677,3 +677,65 @@ img {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+
+/* === NAV & TITLES UPDATE v3 === */
+nav { height: 100px; }
+nav a { font-size: 1.3rem; padding: 22px 26px; font-weight:600; }
+
+/* Mobile improved */
+@media(max-width: 768px){
+  nav { height: auto; flex-wrap: wrap; }
+  nav a { 
+    display:block; 
+    width:100%; 
+    text-align:center; 
+    padding:22px; 
+    font-size:1.35rem;
+  }
+}
+
+/* Bigger hero titles and spacing */
+.hero { padding: 170px 20px; }
+.hero h1 { font-size: 3.6rem; }
+.hero h2 { font-size: 2.7rem; }
+
+/* Section titles */
+h2 { font-size: 2.7rem; }
+
+/* Project titles bigger */
+.project-card h3 { font-size: 1.6rem; }
+
+/* More vertical spacing between sections */
+section { padding: 100px 40px; }
+
+
+
+/* v4 Adjust hero spacing to move logo higher */
+.hero {
+    padding: 80px 20px 120px !important;
+}
+
+/* WhatsApp button style */
+.btn-whatsapp {
+    background: #25D366;
+    color: white !important;
+    border-color: #128C7E;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-whatsapp:hover {
+    background: #1ebe5d;
+    border-color: #0f6b58;
+}
+
+.wa-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.wa-icon {
+    width: 22px;
+    height: 22px;
+}
