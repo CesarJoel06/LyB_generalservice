@@ -739,3 +739,72 @@ section { padding: 100px 40px; }
     width: 22px;
     height: 22px;
 }
+
+
+/* === SLIDE-IN MOBILE MENU (Option A) === */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 99999;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+@media(max-width: 768px){
+  .hamburger { display: flex; }
+  .site-nav { display: none !important; }
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 280px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -6px 0 25px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  padding-top: 120px;
+  padding-left: 25px;
+  padding-right: 25px;
+  gap: 26px;
+  transition: right .35s ease;
+  z-index: 99998;
+}
+
+.mobile-menu a {
+  font-size: 1.35rem;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+/* Dark overlay behind menu */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 99990;
+}
+
+.mobile-overlay.active {
+  display: block;
+}
+

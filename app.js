@@ -266,3 +266,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   applyLanguage("es");
 });
+
+
+// === MOBILE MENU SLIDE-IN TOGGLE v6 ===
+const hamb = document.getElementById("hamburger-btn");
+const mobMenu = document.getElementById("mobile-menu");
+const overlay = document.getElementById("mobile-overlay");
+
+if(hamb){
+  hamb.addEventListener("click", ()=>{
+    mobMenu.classList.toggle("open");
+    overlay.classList.toggle("active");
+  });
+}
+
+if(overlay){
+  overlay.addEventListener("click", ()=>{
+    mobMenu.classList.remove("open");
+    overlay.classList.remove("active");
+  });
+}
+
+document.querySelectorAll("#mobile-menu a").forEach(a=>{
+  a.addEventListener("click", ()=>{
+    mobMenu.classList.remove("open");
+    overlay.classList.remove("active");
+  });
+});
+

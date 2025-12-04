@@ -14,7 +14,8 @@
         <img src="assets/img/logo.png" alt="L & B General Service logo" class="brand-logo-small">
         <span class="brand-text">L & B General Service</span>
       </a>
-      <nav class="site-nav">
+      <button class="hamburger" id="hamburger-btn"><span></span><span></span><span></span></button>
+<nav class="site-nav">
         <a href="#inicio" data-scroll-to data-i18n="nav.home">Inicio</a>
         <a href="#nosotros" data-scroll-to data-i18n="nav.about">Nosotros</a>
         <a href="#servicios" data-scroll-to data-i18n="nav.services">Servicios</a>
@@ -24,7 +25,18 @@
       </nav>
       <button class="lang-toggle" type="button" data-lang-toggle>ES / EN</button>
     </div>
-  </header>
+  
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#inicio" data-scroll-to>Inicio</a>
+  <a href="#nosotros" data-scroll-to>Nosotros</a>
+  <a href="#servicios" data-scroll-to>Servicios</a>
+  <a href="#proyectos" data-scroll-to>Proyectos</a>
+  <a href="#proceso" data-scroll-to>Proceso</a>
+  <a href="#contacto" data-scroll-to>Contacto</a>
+</div>
+
+</header><div class="mobile-overlay" id="mobile-overlay"></div>
+
 
   <main>
     <section id="inicio" class="hero">
@@ -391,7 +403,7 @@
   <footer class="site-footer">
     <div class="shell footer-shell">
       <p data-i18n="footer.rights">© 2015–2025 L & B General Service. Todos los derechos reservados.</p>
-      <p data-i18n="footer.made">Empresa de construcción y remodelación residencial desde 2015.</p>
+      <p data-i18n="footer.made">Empresa de construcción y remodelación.</p>
     </div>
   </footer>
 
