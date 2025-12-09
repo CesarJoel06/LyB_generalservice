@@ -80,7 +80,7 @@ img {
   --transition-fast: all 0.15s ease;
   
   /* Tamaños */
-  --nav-height: 80px;
+  --nav-height: 88px; /* más alta para dar más peso a la barra */
   --container-width: 1200px;
 }
 
@@ -92,8 +92,9 @@ img {
   margin-inline: auto;
 }
 
+/* Secciones más compactas */
 .section {
-  padding: var(--space-3xl) 0;
+  padding: 40px 0;
 }
 
 .section-alt {
@@ -110,8 +111,8 @@ img {
   background: rgba(250, 251, 253, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  border-bottom: 1.5px solid var(--color-border);
+  box-shadow: var(--shadow-md);
 }
 
 .header-shell {
@@ -142,8 +143,8 @@ img {
 
 .brand-text {
   font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.05em;
+  font-size: 18px; /* un poco más grande */
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-primary);
 }
@@ -151,16 +152,18 @@ img {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
-  font-size: 15px;
+  gap: var(--space-xl); /* más separación */
+  font-size: 16px;      /* más grande */
 }
 
 .site-nav a {
   color: var(--color-text-secondary);
   text-decoration: none;
-  padding: var(--space-xs) 0;
+  padding: var(--space-xs) 4px;
   position: relative;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition: var(--transition);
 }
 
@@ -208,7 +211,7 @@ img {
    HERO
    ============================================ */
 .hero {
-  padding: 70px 0 70px; /* Subimos el logo reduciendo espacio superior */
+  padding: 50px 0 50px; /* más compacto para reducir espacio inicial */
   background: radial-gradient(ellipse at top, #ffffff 0%, #f0f4f8 60%, #e0e7f0 100%);
   position: relative;
   overflow: hidden;
@@ -408,7 +411,7 @@ img {
    ============================================ */
 .section-header {
   text-align: center;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl); /* antes era 2xl, ahora menos espacio */
 }
 
 .section-badge {
@@ -546,8 +549,19 @@ img {
 }
 
 /* ============================================
-   PROYECTOS
+   PROYECTOS (más protagonista)
    ============================================ */
+#proyectos.section,
+section#proyectos {
+  padding-top: 56px;
+  padding-bottom: 56px;
+  background: radial-gradient(circle at top, #eef2ff 0%, #f8fafc 60%, #f1f5f9 100%);
+}
+
+.projects-grid {
+  gap: var(--space-lg);
+}
+
 .project-card {
   border-radius: var(--radius-xl);
   background: var(--color-card);
@@ -556,10 +570,11 @@ img {
   cursor: pointer;
   overflow: hidden;
   transition: var(--transition);
+  transform-origin: center;
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px) scale(1.01);
   box-shadow: var(--shadow-xl);
   border-color: rgba(37, 99, 235, 0.4);
 }
@@ -587,13 +602,13 @@ img {
 
 .project-title {
   margin-bottom: 8px;
-  font-size: 17px;
+  font-size: 18px; /* un poco más grande */
   font-weight: 700;
   color: var(--color-primary);
 }
 
 .project-subtitle {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-text-muted);
 }
 
@@ -978,7 +993,7 @@ img {
   }
   
   .section {
-    padding: var(--space-2xl) 0;
+    padding: 32px 0; /* aún más compacto en móvil */
   }
   
   .gallery-modal-body {
@@ -1007,7 +1022,7 @@ img {
   }
   
   .section-header {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
   }
 
   /* Quitar blur en móvil para que no se vea borroso */
@@ -1049,4 +1064,98 @@ img {
     width: 36px;
     height: 36px;
   }
+}
+/* === HERO ESTILO CONSTRUCCIÓN === */
+.hero{
+  position:relative;
+  min-height:100vh;
+  padding:150px 20px 140px;
+  background:url("assets/img/TU_IMAGEN_AQUI.png") center/cover no-repeat fixed;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* oscurecer */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:1;
+}
+
+/* contenido */
+.hero-shell{
+  z-index:5;
+  color:white !important;
+}
+
+/* texto */
+.hero-title{
+  font-size:clamp(44px,7vw,68px);
+  font-weight:900;
+  color:white !important;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.hero-subtitle,
+.hero-tagline{
+  color:white !important;
+  opacity:.95;
+  font-size:20px;
+}
+
+/* elimina logo circular */
+.hero-logo-circle-inner{
+  display:none !important;
+}
+
+/* botones grandes */
+.hero-actions .btn-primary{
+  background:#d4b400 !important;
+  border:none;
+  font-size:20px;
+  font-weight:700;
+  padding:14px 50px;
+  text-transform:uppercase;
+}
+
+.hero-actions .btn-outline{
+  background:#001544;
+  border:none;
+  font-size:20px;
+  font-weight:700;
+  padding:14px 50px;
+  color:white !important;
+  text-transform:uppercase;
+}
+
+/* chips más visibles */
+.hero-badges{
+  justify-content:center;
+}
+
+.chip{
+  background:#ffffff10;
+  border:none;
+  color:white;
+  font-size:14px;
+  backdrop-filter:blur(5px);
+}
+
+/* MENU transparente encima */
+.site-header{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+
+/* texto menu blanco */
+.site-nav a{
+  color:white !important;
+  font-weight:700;
+  text-shadow:0 0 10px rgba(0,0,0,.5);
 }
