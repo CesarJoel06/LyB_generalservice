@@ -1,412 +1,438 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L & B General Service · Construcción y Remodelación en New York</title>
-  <meta name="description" content="L & B General Service · Empresa de construcción y remodelación residencial en New York, atendiendo a la comunidad desde 2015.">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="L&B General Service: constructora y contratista general en EE. UU. Construcción residencial, remodelaciones, ampliaciones y más. Bilingüe ES/EN." />
+  <meta name="keywords" content="construction, general contractor, remodeling, home additions, masonry, HVAC, plumbing, USA" />
+  <meta name="theme-color" content="#001f3f" />
+  <meta property="og:title" content="L&B General Service — Construction & General Contractor" />
+  <meta property="og:description" content="Residential construction, remodeling, additions, repairs, plumbing, HVAC, masonry and restoration." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/logo.png" />
+  <title>L&B General Service | Construction & General Contractor</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="shell header-shell">
-      <a href="#inicio" class="brand" data-scroll-to>
-        <img src="assets/img/logo.png" alt="L & B General Service logo" class="brand-logo-small">
-        <span class="brand-text">L & B General Service</span>
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#home" data-i18n="skipToContent">Saltar al contenido</a>
+
+  <!-- Header -->
+  <header class="site-header" id="top">
+    <div class="container header-grid">
+      <a class="brand" href="#home" aria-label="L&B General Service">
+        <!-- Replace assets/logo.png with your real logo file -->
+        <img class="brand-logo" src="assets/logo.png" alt="L&B General Service logo" width="54" height="54" />
+        <div class="brand-text">
+          <span class="brand-name">L&amp;B</span>
+          <span class="brand-sub" data-i18n="brandSub">GENERAL SERVICE</span>
+        </div>
       </a>
-      <button class="hamburger" id="hamburger-btn"><span></span><span></span><span></span></button>
-<nav class="site-nav">
-        <a href="#inicio" data-scroll-to data-i18n="nav.home">Inicio</a>
-        <a href="#nosotros" data-scroll-to data-i18n="nav.about">Nosotros</a>
-        <a href="#servicios" data-scroll-to data-i18n="nav.services">Servicios</a>
-        <a href="#proyectos" data-scroll-to data-i18n="nav.projects">Proyectos</a>
-        <a href="#proceso" data-scroll-to data-i18n="nav.process">Proceso</a>
-        <a href="#contacto" data-scroll-to data-i18n="nav.contact">Contacto</a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav" id="primaryNav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#home" data-i18n="navHome">Inicio</a></li>
+          <li><a class="nav-link" href="#about" data-i18n="navAbout">Nosotros</a></li>
+          <li><a class="nav-link" href="#services" data-i18n="navServices">Servicios</a></li>
+          <li><a class="nav-link" href="#projects" data-i18n="navProjects">Proyectos</a></li>
+          <li><a class="nav-link" href="#process" data-i18n="navProcess">Proceso</a></li>
+          <li><a class="nav-link" href="#contact" data-i18n="navContact">Contacto</a></li>
+        </ul>
       </nav>
-      <button class="lang-toggle" type="button" data-lang-toggle>ES / EN</button>
+
+      <div class="header-actions">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Toggle language">
+          <span class="lang-pill" id="langPill">ES</span>
+          <span class="lang-caption" data-i18n="langToggleCaption">ES / EN</span>
+        </button>
+        <a class="btn btn--sm btn--outline" href="#contact" data-i18n="headerQuoteBtn">Solicitar Cotización</a>
+      </div>
     </div>
-  
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#inicio" data-scroll-to>Inicio</a>
-  <a href="#nosotros" data-scroll-to>Nosotros</a>
-  <a href="#servicios" data-scroll-to>Servicios</a>
-  <a href="#proyectos" data-scroll-to>Proyectos</a>
-  <a href="#proceso" data-scroll-to>Proceso</a>
-  <a href="#contacto" data-scroll-to>Contacto</a>
-</div>
-
-</header><div class="mobile-overlay" id="mobile-overlay"></div>
-
+  </header>
 
   <main>
-    <section id="inicio" class="hero">
-      <div class="shell hero-shell">
-        <div class="hero-logo-circle">
-          <div class="hero-logo-circle-inner">
-            <img src="assets/img/logo.png" alt="L & B General Service" class="hero-logo-img">
-          </div>
+    <!-- HERO -->
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <p class="hero-kicker" data-i18n="heroKicker">Constructora &amp; Contratista General</p>
+        <h1 class="hero-title" data-i18n="heroTitle">Construimos, remodelamos y entregamos con calidad profesional</h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          Soluciones integrales para hogares y negocios en EE. UU. — atención bilingüe, cronogramas claros y acabados premium.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn--primary" href="#contact" data-i18n="heroCta">Solicitar Cotización</a>
+          <a class="btn btn--ghost" href="#services" data-i18n="heroSecondary">Ver Servicios</a>
         </div>
-        <div class="hero-text">
-          <span class="hero-badge" data-i18n="hero.badge">Construcción y remodelación en New York</span>
-          <h1 class="hero-title" data-i18n="hero.title">L & B General Service</h1>
-          <p class="hero-subtitle" data-i18n="hero.subtitle">Construyendo y renovando hogares para la comunidad desde 2015.</p>
-          <p class="hero-tagline" data-i18n="hero.tagline">Especialistas en remodelaciones, adiciones y construcción residencial.</p>
-          <div class="hero-actions">
-            <a href="#proyectos" class="btn btn-primary" data-scroll-to data-i18n="hero.cta.primary">Ver proyectos</a>
-            <a href="#contacto" class="btn btn-outline" data-scroll-to data-i18n="hero.cta.secondary">Solicitar cotización</a>
-          
-            <a href="https://wa.me/1999999999" target="_blank" class="btn btn-whatsapp">
-              <img src="assets/img/phone.png" alt="WhatsApp" class="wa-icon"> WhatsApp
-            </a>
 
+        <div class="hero-stats" aria-label="Company stats">
+          <div class="stat">
+            <span class="stat-number">10+</span>
+            <span class="stat-label" data-i18n="statYears">Años de experiencia</span>
           </div>
-          <div class="hero-badges">
-            <span class="chip" data-i18n="badges.fast">Trabajo rápido</span>
-            <span class="chip" data-i18n="badges.quality">Calidad certificada</span>
-            <span class="chip" data-i18n="badges.warranty">Garantía en el servicio</span>
+          <div class="stat">
+            <span class="stat-number">250+</span>
+            <span class="stat-label" data-i18n="statProjects">Proyectos completados</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">4.9★</span>
+            <span class="stat-label" data-i18n="statRating">Valoración promedio</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="nosotros" class="section">
-      <div class="shell">
-        <div class="section-header">
-          <h2 class="section-title" data-i18n="about.title">Sobre L & B General Service</h2>
+    <!-- ABOUT -->
+    <section class="section" id="about" aria-label="About">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="aboutTitle">Nosotros</h2>
+          <p class="section-subtitle" data-i18n="aboutSubtitle">Construcción responsable, comunicación clara y resultados que se notan.</p>
         </div>
-        <div class="grid-2 about-grid">
-          <div class="about-text">
-            <p data-i18n="about.p1">
-              L & B General Service es una empresa de remodelación y construcción fundada en 2015 en New York. Nuestro enfoque está en hogares residenciales, desde pequeñas renovaciones hasta proyectos completos de vivienda.
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3 class="card-title" data-i18n="aboutWhoTitle">¿Quiénes somos?</h3>
+            <p class="card-text" data-i18n="aboutWhoText">
+              En L&amp;B General Service ofrecemos servicios de construcción y contratación general para clientes residenciales y comerciales en
+              Estados Unidos. Trabajamos con un enfoque práctico: escuchamos tu necesidad, proponemos soluciones realistas, y ejecutamos con
+              estándares profesionales. Nuestro equipo combina planificación, seguridad y control de calidad para entregar obras durables y con
+              excelente acabado. Somos bilingües (ES/EN) para que la comunicación sea simple y directa; además, cuidamos el presupuesto y el
+              calendario con transparencia, evitando sorpresas. Nos gusta construir relaciones a largo plazo basadas en confianza, orden y
+              resultados medibles.
             </p>
-            <p data-i18n="about.p2">
-              Trabajamos principalmente con la comunidad hispana, ofreciendo atención en español e inglés, comunicación clara y acompañamiento en cada etapa del proyecto.
-            </p>
-            <p class="about-since" data-i18n="about.since">
-              Desde 2015 · Más de 10 años de experiencia en construcción y remodelación residencial.
-            </p>
+
+            <div class="about-highlights">
+              <div class="highlight">
+                <span class="highlight-number">10+</span>
+                <span class="highlight-label" data-i18n="aboutYears">Años de experiencia</span>
+              </div>
+              <div class="highlight">
+                <span class="highlight-number">100%</span>
+                <span class="highlight-label" data-i18n="aboutBilingual">Atención bilingüe</span>
+              </div>
+              <div class="highlight">
+                <span class="highlight-number">QA</span>
+                <span class="highlight-label" data-i18n="aboutQA">Control de calidad</span>
+              </div>
+            </div>
           </div>
-          <div class="about-cards">
-            <article class="mini-card">
-              <h3>2015</h3>
-              <p>Inicio de operaciones en New York, enfocados en clientes residenciales.</p>
-            </article>
-            <article class="mini-card">
-              <h3>+10</h3>
-              <p>Proyectos residenciales destacados completados en distintas zonas.</p>
-            </article>
-            <article class="mini-card">
-              <h3>ES / EN</h3>
-              <p>Atención en español e inglés para una comunicación clara.</p>
-            </article>
+
+          <div class="about-card about-card--alt">
+            <h3 class="card-title" data-i18n="missionTitle">Misión</h3>
+            <p class="card-text" data-i18n="missionText">
+              Entregar proyectos de construcción y remodelación con seguridad, precisión y un servicio al cliente excepcional, manteniendo una
+              comunicación transparente de principio a fin.
+            </p>
+
+            <h3 class="card-title" data-i18n="valuesTitle">Valores</h3>
+            <ul class="check-list" aria-label="Values list">
+              <li data-i18n="value1">Calidad verificable y acabados limpios</li>
+              <li data-i18n="value2">Responsabilidad y puntualidad</li>
+              <li data-i18n="value3">Comunicación clara (ES/EN)</li>
+              <li data-i18n="value4">Seguridad en obra y orden</li>
+              <li data-i18n="value5">Respeto por tu hogar y tu inversión</li>
+            </ul>
+
+            <div class="team-mini" aria-label="Team">
+              <div class="team-mini-item">
+                <span class="team-dot" aria-hidden="true"></span>
+                <div>
+                  <strong data-i18n="teamRole1">Project Manager</strong>
+                  <div class="muted" data-i18n="teamDesc1">Planificación, cronograma y coordinación</div>
+                </div>
+              </div>
+              <div class="team-mini-item">
+                <span class="team-dot" aria-hidden="true"></span>
+                <div>
+                  <strong data-i18n="teamRole2">Field Supervisor</strong>
+                  <div class="muted" data-i18n="teamDesc2">Calidad, seguridad y ejecución</div>
+                </div>
+              </div>
+              <div class="team-mini-item">
+                <span class="team-dot" aria-hidden="true"></span>
+                <div>
+                  <strong data-i18n="teamRole3">Skilled Crew</strong>
+                  <div class="muted" data-i18n="teamDesc3">Especialistas por rubro y acabado</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="servicios" class="section section-alt">
-      <div class="shell">
-        <div class="section-header">
-          <span class="section-badge" data-i18n="services.badge">Todo en un solo equipo</span>
-          <h2 class="section-title" data-i18n="services.title">Servicios</h2>
-        </div>
-        <div class="services-grid">
-          <article class="service-card">
-            <h3 data-i18n="services.item1.title">Remodelaciones de casas</h3>
-            <p data-i18n="services.item1.desc">Cocinas, baños, salas y todos los espacios interiores del hogar.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item2.title">Construcción desde cero</h3>
-            <p data-i18n="services.item2.desc">Viviendas nuevas, estructura y acabados listos para habitar.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item3.title">Ampliaciones / adiciones</h3>
-            <p data-i18n="services.item3.desc">Segundos pisos, cuartos adicionales y ampliación de áreas existentes.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item4.title">Framing / carpintería</h3>
-            <p data-i18n="services.item4.desc">Estructuras de madera, refuerzos y detalles de carpintería.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item5.title">Drywall, pintura, pisos</h3>
-            <p data-i18n="services.item5.desc">Acabados interiores limpios, modernos y duraderos.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item6.title">Instalaciones sanitarias</h3>
-            <p data-i18n="services.item6.desc">Reubicación y renovación de líneas de agua y desagüe.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item7.title">Electricidad</h3>
-            <p data-i18n="services.item7.desc">Actualización de cableado, tableros y puntos de luz.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item8.title">Roofing</h3>
-            <p data-i18n="services.item8.desc">Reparación y reemplazo de techos residenciales.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item9.title">Concrete work</h3>
-            <p data-i18n="services.item9.desc">Sidewalks, driveways, patios y losas.</p>
-          </article>
-          <article class="service-card">
-            <h3 data-i18n="services.item10.title">Landscaping</h3>
-            <p data-i18n="services.item10.desc">Terminaciones exteriores, áreas verdes y detalles de jardín.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="proyectos" class="section">
-      <div class="shell">
-        <div class="section-header">
-          <span class="section-badge" data-i18n="projects.badge">Portafolio real</span>
-          <h2 class="section-title" data-i18n="projects.title">Proyectos</h2>
-          <p class="section-subtitle" data-i18n="projects.subtitle">
-            Una selección de proyectos residenciales realizados para clientes en New York y alrededores.
+    <!-- SERVICES -->
+    <section class="section section--alt" id="services" aria-label="Services">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="servicesTitle">Servicios</h2>
+          <p class="section-subtitle" data-i18n="servicesSubtitle">
+            Selecciona un servicio para ver detalles y galería de imágenes.
           </p>
         </div>
-        <div class="projects-grid">
-<article class="project-card" data-project-card="project1">
-            <div class="project-image-wrap">
-              <img src="assets/img/project1_img1.png" alt="Remodelación de cocina moderna" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Remodelación de cocina moderna</h3>
-              <p class="project-subtitle">Remodelación completa de cocina con acabados modernos.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project2">
-            <div class="project-image-wrap">
-              <img src="assets/img/project2_img1.png" alt="Remodelación de baño" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Remodelación de baño</h3>
-              <p class="project-subtitle">Renovación integral de baño con cerámicos y ducha nueva.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project3">
-            <div class="project-image-wrap">
-              <img src="assets/img/project3_img1.png" alt="Renovación de sala" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Renovación de sala</h3>
-              <p class="project-subtitle">Actualización de sala con pintura y cambio de pisos.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project4">
-            <div class="project-image-wrap">
-              <img src="assets/img/project4_img1.png" alt="Construcción de vivienda nueva" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Construcción de vivienda nueva</h3>
-              <p class="project-subtitle">Construcción de vivienda unifamiliar desde cimientos.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project5">
-            <div class="project-image-wrap">
-              <img src="assets/img/project5_img1.png" alt="Ampliación de segundo piso" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Ampliación de segundo piso</h3>
-              <p class="project-subtitle">Ampliación de segundo piso con estructura ligera.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project6">
-            <div class="project-image-wrap">
-              <img src="assets/img/project6_img1.png" alt="Framing y carpintería estructural" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Framing y carpintería estructural</h3>
-              <p class="project-subtitle">Framing estructural y detalles de carpintería.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project7">
-            <div class="project-image-wrap">
-              <img src="assets/img/project7_img1.png" alt="Instalaciones de drywall y pintura" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Instalaciones de drywall y pintura</h3>
-              <p class="project-subtitle">Instalación de drywall, empastado y pintura.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project8">
-            <div class="project-image-wrap">
-              <img src="assets/img/project8_img1.png" alt="Instalaciones sanitarias y plumbing" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Instalaciones sanitarias y plumbing</h3>
-              <p class="project-subtitle">Reemplazo de tuberías y mejora sanitaria.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project9">
-            <div class="project-image-wrap">
-              <img src="assets/img/project9_img1.png" alt="Instalaciones eléctricas residenciales" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Instalaciones eléctricas residenciales</h3>
-              <p class="project-subtitle">Actualización de cableado y luminarias.</p>
-            </div>
-          </article>
-<article class="project-card" data-project-card="project10">
-            <div class="project-image-wrap">
-              <img src="assets/img/project10_img1.png" alt="Roofing, concreto y landscaping" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h3 class="project-title" data-project-title>Roofing, concreto y landscaping</h3>
-              <p class="project-subtitle">Reemplazo de techo y mejora exterior del patio.</p>
-            </div>
-          </article>
-        </div>
-      </div>
 
-      <div class="gallery-hidden">
-        <img src="assets/img/project1_img1.png" alt="Proyecto 1 - Imagen 1" loading="lazy" data-project-image data-project-id="project1" data-project-index="1">
-    <img src="assets/img/project1_img2.png" alt="Proyecto 1 - Imagen 2" loading="lazy" data-project-image data-project-id="project1" data-project-index="2">
-    <img src="assets/img/project1_img3.png" alt="Proyecto 1 - Imagen 3" loading="lazy" data-project-image data-project-id="project1" data-project-index="3">
-    <img src="assets/img/project1_img4.png" alt="Proyecto 1 - Imagen 4" loading="lazy" data-project-image data-project-id="project1" data-project-index="4">
-    <img src="assets/img/project1_img5.png" alt="Proyecto 1 - Imagen 5" loading="lazy" data-project-image data-project-id="project1" data-project-index="5">
-    <img src="assets/img/project2_img1.png" alt="Proyecto 2 - Imagen 1" loading="lazy" data-project-image data-project-id="project2" data-project-index="1">
-    <img src="assets/img/project2_img2.png" alt="Proyecto 2 - Imagen 2" loading="lazy" data-project-image data-project-id="project2" data-project-index="2">
-    <img src="assets/img/project2_img3.png" alt="Proyecto 2 - Imagen 3" loading="lazy" data-project-image data-project-id="project2" data-project-index="3">
-    <img src="assets/img/project2_img4.png" alt="Proyecto 2 - Imagen 4" loading="lazy" data-project-image data-project-id="project2" data-project-index="4">
-    <img src="assets/img/project2_img5.png" alt="Proyecto 2 - Imagen 5" loading="lazy" data-project-image data-project-id="project2" data-project-index="5">
-    <img src="assets/img/project3_img1.png" alt="Proyecto 3 - Imagen 1" loading="lazy" data-project-image data-project-id="project3" data-project-index="1">
-    <img src="assets/img/project3_img2.png" alt="Proyecto 3 - Imagen 2" loading="lazy" data-project-image data-project-id="project3" data-project-index="2">
-    <img src="assets/img/project3_img3.png" alt="Proyecto 3 - Imagen 3" loading="lazy" data-project-image data-project-id="project3" data-project-index="3">
-    <img src="assets/img/project3_img4.png" alt="Proyecto 3 - Imagen 4" loading="lazy" data-project-image data-project-id="project3" data-project-index="4">
-    <img src="assets/img/project3_img5.png" alt="Proyecto 3 - Imagen 5" loading="lazy" data-project-image data-project-id="project3" data-project-index="5">
-    <img src="assets/img/project4_img1.png" alt="Proyecto 4 - Imagen 1" loading="lazy" data-project-image data-project-id="project4" data-project-index="1">
-    <img src="assets/img/project4_img2.png" alt="Proyecto 4 - Imagen 2" loading="lazy" data-project-image data-project-id="project4" data-project-index="2">
-    <img src="assets/img/project4_img3.png" alt="Proyecto 4 - Imagen 3" loading="lazy" data-project-image data-project-id="project4" data-project-index="3">
-    <img src="assets/img/project4_img4.png" alt="Proyecto 4 - Imagen 4" loading="lazy" data-project-image data-project-id="project4" data-project-index="4">
-    <img src="assets/img/project4_img5.png" alt="Proyecto 4 - Imagen 5" loading="lazy" data-project-image data-project-id="project4" data-project-index="5">
-    <img src="assets/img/project5_img1.png" alt="Proyecto 5 - Imagen 1" loading="lazy" data-project-image data-project-id="project5" data-project-index="1">
-    <img src="assets/img/project5_img2.png" alt="Proyecto 5 - Imagen 2" loading="lazy" data-project-image data-project-id="project5" data-project-index="2">
-    <img src="assets/img/project5_img3.png" alt="Proyecto 5 - Imagen 3" loading="lazy" data-project-image data-project-id="project5" data-project-index="3">
-    <img src="assets/img/project5_img4.png" alt="Proyecto 5 - Imagen 4" loading="lazy" data-project-image data-project-id="project5" data-project-index="4">
-    <img src="assets/img/project5_img5.png" alt="Proyecto 5 - Imagen 5" loading="lazy" data-project-image data-project-id="project5" data-project-index="5">
-    <img src="assets/img/project6_img1.png" alt="Proyecto 6 - Imagen 1" loading="lazy" data-project-image data-project-id="project6" data-project-index="1">
-    <img src="assets/img/project6_img2.png" alt="Proyecto 6 - Imagen 2" loading="lazy" data-project-image data-project-id="project6" data-project-index="2">
-    <img src="assets/img/project6_img3.png" alt="Proyecto 6 - Imagen 3" loading="lazy" data-project-image data-project-id="project6" data-project-index="3">
-    <img src="assets/img/project6_img4.png" alt="Proyecto 6 - Imagen 4" loading="lazy" data-project-image data-project-id="project6" data-project-index="4">
-    <img src="assets/img/project6_img5.png" alt="Proyecto 6 - Imagen 5" loading="lazy" data-project-image data-project-id="project6" data-project-index="5">
-    <img src="assets/img/project7_img1.png" alt="Proyecto 7 - Imagen 1" loading="lazy" data-project-image data-project-id="project7" data-project-index="1">
-    <img src="assets/img/project7_img2.png" alt="Proyecto 7 - Imagen 2" loading="lazy" data-project-image data-project-id="project7" data-project-index="2">
-    <img src="assets/img/project7_img3.png" alt="Proyecto 7 - Imagen 3" loading="lazy" data-project-image data-project-id="project7" data-project-index="3">
-    <img src="assets/img/project7_img4.png" alt="Proyecto 7 - Imagen 4" loading="lazy" data-project-image data-project-id="project7" data-project-index="4">
-    <img src="assets/img/project7_img5.png" alt="Proyecto 7 - Imagen 5" loading="lazy" data-project-image data-project-id="project7" data-project-index="5">
-    <img src="assets/img/project8_img1.png" alt="Proyecto 8 - Imagen 1" loading="lazy" data-project-image data-project-id="project8" data-project-index="1">
-    <img src="assets/img/project8_img2.png" alt="Proyecto 8 - Imagen 2" loading="lazy" data-project-image data-project-id="project8" data-project-index="2">
-    <img src="assets/img/project8_img3.png" alt="Proyecto 8 - Imagen 3" loading="lazy" data-project-image data-project-id="project8" data-project-index="3">
-    <img src="assets/img/project8_img4.png" alt="Proyecto 8 - Imagen 4" loading="lazy" data-project-image data-project-id="project8" data-project-index="4">
-    <img src="assets/img/project8_img5.png" alt="Proyecto 8 - Imagen 5" loading="lazy" data-project-image data-project-id="project8" data-project-index="5">
-    <img src="assets/img/project9_img1.png" alt="Proyecto 9 - Imagen 1" loading="lazy" data-project-image data-project-id="project9" data-project-index="1">
-    <img src="assets/img/project9_img2.png" alt="Proyecto 9 - Imagen 2" loading="lazy" data-project-image data-project-id="project9" data-project-index="2">
-    <img src="assets/img/project9_img3.png" alt="Proyecto 9 - Imagen 3" loading="lazy" data-project-image data-project-id="project9" data-project-index="3">
-    <img src="assets/img/project9_img4.png" alt="Proyecto 9 - Imagen 4" loading="lazy" data-project-image data-project-id="project9" data-project-index="4">
-    <img src="assets/img/project9_img5.png" alt="Proyecto 9 - Imagen 5" loading="lazy" data-project-image data-project-id="project9" data-project-index="5">
-    <img src="assets/img/project10_img1.png" alt="Proyecto 10 - Imagen 1" loading="lazy" data-project-image data-project-id="project10" data-project-index="1">
-    <img src="assets/img/project10_img2.png" alt="Proyecto 10 - Imagen 2" loading="lazy" data-project-image data-project-id="project10" data-project-index="2">
-    <img src="assets/img/project10_img3.png" alt="Proyecto 10 - Imagen 3" loading="lazy" data-project-image data-project-id="project10" data-project-index="3">
-    <img src="assets/img/project10_img4.png" alt="Proyecto 10 - Imagen 4" loading="lazy" data-project-image data-project-id="project10" data-project-index="4">
-    <img src="assets/img/project10_img5.png" alt="Proyecto 10 - Imagen 5" loading="lazy" data-project-image data-project-id="project10" data-project-index="5">
-      </div>
-
-      <div class="gallery-overlay" data-gallery-overlay></div>
-      <div class="gallery-modal" data-gallery-modal>
-        <button class="gallery-close" type="button" data-gallery-close>&times;</button>
-        <div class="gallery-modal-body">
-          <div class="gallery-modal-main">
-            <h3 class="gallery-title" data-gallery-title>Proyecto</h3>
-            <img class="gallery-image" data-gallery-image src="" alt="Proyecto seleccionado">
-            <div class="gallery-controls">
-              <button type="button" class="btn-control" data-gallery-prev>&larr;</button>
-              <span class="gallery-counter" data-gallery-counter>1 / 5</span>
-              <button type="button" class="btn-control" data-gallery-next>&rarr;</button>
-            </div>
-          </div>
-          <div class="gallery-thumbs" data-gallery-thumbnails></div>
-        </div>
+        <div class="grid grid--cards" id="servicesGrid" aria-live="polite"></div>
       </div>
     </section>
 
-    <section id="proceso" class="section section-alt">
-      <div class="shell">
-        <div class="section-header">
-          <span class="section-badge" data-i18n="process.badge">Así trabajamos</span>
-          <h2 class="section-title" data-i18n="process.title">Nuestro proceso</h2>
+    <!-- PROJECTS -->
+    <section class="section" id="projects" aria-label="Projects">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="projectsTitle">Proyectos</h2>
+          <p class="section-subtitle" data-i18n="projectsSubtitle">
+            16 ejemplos de proyectos (demo). Haz clic para abrir el detalle con galería.
+          </p>
         </div>
-        <div class="process-grid">
-          <article class="process-step">
-            <h3 data-i18n="process.step1.title">1. Visita y evaluación</h3>
-            <p data-i18n="process.step1.desc">Revisamos el espacio, escuchamos tus ideas y tomamos medidas.</p>
-          </article>
-          <article class="process-step">
-            <h3 data-i18n="process.step2.title">2. Propuesta clara</h3>
-            <p data-i18n="process.step2.desc">Presentamos un presupuesto detallado con tiempos, etapas y materiales.</p>
-          </article>
-          <article class="process-step">
-            <h3 data-i18n="process.step3.title">3. Ejecución ordenada</h3>
-            <p data-i18n="process.step3.desc">Organizamos el trabajo por fases para reducir el impacto en tu hogar.</p>
-          </article>
-          <article class="process-step">
-            <h3 data-i18n="process.step4.title">4. Entrega y seguimiento</h3>
-            <p data-i18n="process.step4.desc">Entregamos limpio, revisamos juntos y dejamos la obra lista para disfrutar.</p>
-          </article>
-        </div>
+
+        <div class="grid grid--projects" id="projectsGrid" aria-live="polite"></div>
       </div>
     </section>
 
-    <section id="contacto" class="section contact-section">
-      <div class="shell contact-shell">
-        <div class="contact-info">
-          <div class="section-header">
-            <span class="section-badge" data-i18n="contact.badge">Hablemos de tu proyecto</span>
-            <h2 class="section-title" data-i18n="contact.title">Contacto</h2>
-            <p class="section-subtitle" data-i18n="contact.subtitle">
-              Envíanos los detalles de tu proyecto y te responderemos a la brevedad.
+    <!-- PROCESS -->
+    <section class="section section--alt" id="process" aria-label="Process">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="processTitle">Proceso</h2>
+          <p class="section-subtitle" data-i18n="processSubtitle">
+            Un flujo claro para evitar sorpresas y asegurar entregas consistentes.
+          </p>
+        </div>
+
+        <ol class="timeline" aria-label="Project process">
+          <li class="timeline-step">
+            <span class="timeline-number">1</span>
+            <div class="timeline-content">
+              <h3 data-i18n="step1Title">Consulta inicial</h3>
+              <p data-i18n="step1Text">Entendemos tu necesidad, medimos y recopilamos requisitos técnicos.</p>
+            </div>
+          </li>
+          <li class="timeline-step">
+            <span class="timeline-number">2</span>
+            <div class="timeline-content">
+              <h3 data-i18n="step2Title">Diseño y presupuesto</h3>
+              <p data-i18n="step2Text">Propuesta detallada con alcance, materiales, tiempos y costos.</p>
+            </div>
+          </li>
+          <li class="timeline-step">
+            <span class="timeline-number">3</span>
+            <div class="timeline-content">
+              <h3 data-i18n="step3Title">Aprobación y planificación</h3>
+              <p data-i18n="step3Text">Definimos cronograma, permisos (si aplica) y fecha de inicio.</p>
+            </div>
+          </li>
+          <li class="timeline-step">
+            <span class="timeline-number">4</span>
+            <div class="timeline-content">
+              <h3 data-i18n="step4Title">Construcción / ejecución</h3>
+              <p data-i18n="step4Text">Trabajo por fases con supervisión, limpieza y control de calidad.</p>
+            </div>
+          </li>
+          <li class="timeline-step">
+            <span class="timeline-number">5</span>
+            <div class="timeline-content">
+              <h3 data-i18n="step5Title">Entrega final</h3>
+              <p data-i18n="step5Text">Revisión final, checklist y entrega con recomendaciones de mantenimiento.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-i18n="contactTitle">Contacto</h2>
+          <p class="section-subtitle" data-i18n="contactSubtitle">
+            Cuéntanos tu proyecto y te respondemos rápido por email o WhatsApp.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <form class="form" id="quoteForm" novalidate>
+            <div class="form-row">
+              <label class="label" for="fullName" data-i18n="formName">Nombre completo</label>
+              <input class="input" id="fullName" name="fullName" type="text" autocomplete="name" required />
+              <small class="error" data-error-for="fullName"></small>
+            </div>
+
+            <div class="form-row form-row--2">
+              <div>
+                <label class="label" for="email" data-i18n="formEmail">Email</label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" required />
+                <small class="error" data-error-for="email"></small>
+              </div>
+              <div>
+                <label class="label" for="phone" data-i18n="formPhone">Teléfono</label>
+                <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" required />
+                <small class="error" data-error-for="phone"></small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="label" for="service" data-i18n="formService">Servicio solicitado</label>
+              <select class="input" id="service" name="service" required aria-label="Requested service">
+                <!-- Filled by JS -->
+              </select>
+              <small class="error" data-error-for="service"></small>
+            </div>
+
+            <div class="form-row">
+              <label class="label" for="message" data-i18n="formMessage">Mensaje / Descripción del proyecto</label>
+              <textarea class="input textarea" id="message" name="message" rows="5" required></textarea>
+              <small class="error" data-error-for="message"></small>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn--primary" type="submit" data-i18n="formSubmit">Enviar por WhatsApp</button>
+              <button class="btn btn--outline" type="button" id="copyMessageBtn" data-i18n="formCopy">Copiar mensaje</button>
+            </div>
+
+            <p class="form-hint" data-i18n="formHint">
+              El botón generará un mensaje prellenado para WhatsApp. No guardamos datos en servidores (sitio estático).
             </p>
-          </div>
-          <ul class="contact-list">
-            <li><strong>Tel / WhatsApp:</strong> <a href="tel:+1999999999">+1 999 999 999</a></li>
-            <li><strong>Email:</strong> <a href="mailto:info@tucorreo.com">info@tucorreo.com</a></li>
-            <li><strong>Ubicación:</strong> New York, NY</li>
-          </ul>
-          <div class="social-links">
-            <a href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a>
-          </div>
+
+            <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+          </form>
+
+          <aside class="contact-card" aria-label="Contact info">
+            <h3 class="card-title" data-i18n="contactInfoTitle">Información</h3>
+
+            <div class="contact-info">
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">📍</span>
+                <div>
+                  <strong data-i18n="contactAddressTitle">Dirección</strong>
+                  <div class="muted" data-i18n="contactAddress">1234 Main St, Suite 200, Orlando, FL 32801</div>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">📞</span>
+                <div>
+                  <strong data-i18n="contactPhoneTitle">Teléfono</strong>
+                  <div class="muted"><a class="link" href="tel:+14075550123">+1 (407) 555-0123</a></div>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">✉️</span>
+                <div>
+                  <strong data-i18n="contactEmailTitle">Email</strong>
+                  <div class="muted"><a class="link" href="mailto:info@lbgeneralservice.com">info@lbgeneralservice.com</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-wrap">
+              <iframe
+                title="Google Maps placeholder"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3514.1218215172957!2d-81.379234!3d28.542110!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e77af3b7c5f7f9%3A0x9a62f0a8d0ea1f6a!2sOrlando%2C%20FL%2C%20USA!5e0!3m2!1sen!2sus!4v1710000000000"
+                allowfullscreen=""
+              ></iframe>
+            </div>
+
+            <a class="btn btn--outline btn--full" id="whatsAppDirect" href="#" target="_blank" rel="noopener" data-i18n="contactWhatsappBtn">
+              Abrir WhatsApp
+            </a>
+
+            <div class="social-row" aria-label="Social links">
+              <a class="social" href="#" aria-label="Facebook">Fb</a>
+              <a class="social" href="#" aria-label="Instagram">Ig</a>
+              <a class="social" href="#" aria-label="LinkedIn">In</a>
+            </div>
+          </aside>
         </div>
-        <form class="contact-form">
-          <div class="field">
-            <label for="name" data-i18n="contact.form.name">Nombre completo</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="phone" data-i18n="contact.form.phone">Teléfono</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel">
-          </div>
-          <div class="field">
-            <label for="email" data-i18n="contact.form.email">Correo electrónico</label>
-            <input id="email" name="email" type="email" autocomplete="email">
-          </div>
-          <div class="field">
-            <label for="message" data-i18n="contact.form.message">Cuéntanos sobre tu proyecto...</label>
-            <textarea id="message" name="message" rows="4"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Enviar mensaje</button>
-        </form>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="shell footer-shell">
-      <p data-i18n="footer.rights">© 2015–2025 L & B General Service. Todos los derechos reservados.</p>
-      <p data-i18n="footer.made">Empresa de construcción y remodelación.</p>
+  <!-- Footer -->
+  <footer class="footer" aria-label="Footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="L&B General Service logo" width="44" height="44" loading="lazy" />
+        <div>
+          <strong>L&amp;B General Service</strong>
+          <div class="muted" data-i18n="footerTagline">Construcción y remodelación con estándares profesionales.</div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#home" data-i18n="navHome">Inicio</a>
+        <a href="#about" data-i18n="navAbout">Nosotros</a>
+        <a href="#services" data-i18n="navServices">Servicios</a>
+        <a href="#projects" data-i18n="navProjects">Proyectos</a>
+        <a href="#contact" data-i18n="navContact">Contacto</a>
+      </div>
+
+      <div class="footer-note">
+        <span>© <span id="year"></span> L&amp;B General Service</span>
+        <span class="muted" data-i18n="footerRights">Todos los derechos reservados.</span>
+      </div>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- Floating WhatsApp button -->
+  <a class="fab" id="fabWhatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <span class="fab-icon" aria-hidden="true">💬</span>
+    <span class="fab-text" data-i18n="fabText">WhatsApp</span>
+  </a>
+
+  <!-- Modal (shared) -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-panel" role="document" aria-label="Modal content">
+      <button class="modal-close" type="button" aria-label="Close modal" id="modalClose">✕</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+
+  <!-- Lightbox (image zoom) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-backdrop" data-close-lightbox="true"></div>
+    <div class="lightbox-panel" role="document" aria-label="Image viewer">
+      <div class="lightbox-topbar">
+        <div class="lightbox-title" id="lightboxTitle">Image</div>
+        <div class="lightbox-actions" aria-label="Zoom controls">
+          <button class="icon-btn" type="button" id="zoomOutBtn" aria-label="Zoom out">
+            <img src="assets/icons/icon-zoom-out.svg" alt="" aria-hidden="true" />
+          </button>
+          <button class="icon-btn" type="button" id="zoomInBtn" aria-label="Zoom in">
+            <img src="assets/icons/icon-zoom-in.svg" alt="" aria-hidden="true" />
+          </button>
+          <button class="icon-btn" type="button" id="lightboxClose" aria-label="Close">
+            <img src="assets/icons/icon-close.svg" alt="" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+
+      <div class="lightbox-canvas" id="lightboxCanvas" aria-label="Zoomable image area">
+        <img id="lightboxImg" src="" alt="" />
+      </div>
+
+      <div class="lightbox-hint" id="lightboxHint">Wheel/Trackpad to zoom. Drag to pan.</div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
