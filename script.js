@@ -599,7 +599,20 @@
     const title = project.title[lang];
     const desc = project.desc[lang];
     const d = project.details[lang];
-    const gallery = project.gallery.map((src) => `<img class="zoomable" src="${src}" data-zoom-src="${src}" alt="${escapeHtml(title)} photo" loading="lazy" />`).join("");
+
+    // Include cover + gallery (unique, preserve order)
+    const images = [project.img, ...project.gallery].filter((src, idx, arr) => arr.indexOf(src) === idx);
+
+    const thumbs = images.map((src, i) => `
+      <button class="carousel-thumb ${i === 0 ? "is-active" : ""}" type="button"
+        data-carousel-thumb="${i}" data-src="${src}"
+        aria-label="${escapeHtml(title)} ${lang === "es" ? "miniatura" : "thumbnail"} ${i + 1}">
+        <img src="${src}" alt="" loading="lazy" />
+      </button>
+    `).join("");
+
+    const first = images[0];
+
     return `
       <div class="modal-head">
         <img src="${project.img}" alt="${escapeHtml(title)}" />
@@ -613,12 +626,73 @@
           </div>
         </div>
       </div>
+
       <h3 class="card-title" style="margin-top:16px;">${escapeHtml(t("modalGalleryTitle"))}</h3>
-      <div class="gallery">${gallery}</div>
+
+      <div class="carousel-wrap" data-carousel-wrap="project">
+        <div class="carousel" data-index="0" aria-label="${escapeHtml(lang === "es" ? "Galería de imágenes" : "Image gallery")}">
+          <button class="carousel-btn prev" type="button" data-carousel-prev="true" aria-label="${escapeHtml(lang === "es" ? "Imagen anterior" : "Previous image")}">
+            <img src="assets/icons/icon-chevron-left.svg" alt="" aria-hidden="true" />
+          </button>
+
+          <div class="carousel-stage">
+            <img class="zoomable" id="projectCarouselMain"
+              src="${first}" data-zoom-src="${first}"
+              alt="${escapeHtml(title)} photo 1" loading="lazy" />
+          </div>
+
+          <button class="carousel-btn next" type="button" data-carousel-next="true" aria-label="${escapeHtml(lang === "es" ? "Siguiente imagen" : "Next image")}">
+            <img src="assets/icons/icon-chevron-right.svg" alt="" aria-hidden="true" />
+          </button>
+        </div>
+
+        <div class="carousel-thumbs" aria-label="${escapeHtml(lang === "es" ? "Miniaturas" : "Thumbnails")}">
+          ${thumbs}
+        </div>
+      </div>
     `;
   }
 
-  function handleCardActivate(target) {
+
+  
+
+  /* =========================
+     Project carousel helpers
+  ========================= */
+  function setCarouselIndex(wrap, nextIndex) {
+    if (!wrap) return;
+    const carousel = wrap.querySelector(".carousel");
+    const main = wrap.querySelector("#projectCarouselMain");
+    const thumbs = qsa(".carousel-thumb", wrap);
+    if (!carousel || !main || thumbs.length === 0) return;
+
+    const max = thumbs.length;
+    let idx = Number(nextIndex);
+    if (!Number.isFinite(idx)) idx = 0;
+    idx = (idx + max) % max;
+
+    const src = thumbs[idx].getAttribute("data-src") || "";
+    carousel.setAttribute("data-index", String(idx));
+
+    if (src) {
+      main.src = src;
+      main.setAttribute("data-zoom-src", src);
+      const baseAlt = main.getAttribute("alt") || "Image";
+      main.alt = baseAlt.replace(/\sphoto\s\d+$/i, "") + ` photo ${idx + 1}`;
+    }
+
+    thumbs.forEach((b, i) => b.classList.toggle("is-active", i === idx));
+    thumbs[idx].scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+  }
+
+  function shiftCarousel(wrap, delta) {
+    const carousel = wrap?.querySelector(".carousel");
+    if (!carousel) return;
+    const idx = parseInt(carousel.getAttribute("data-index") || "0", 10);
+    setCarouselIndex(wrap, idx + delta);
+  }
+
+function handleCardActivate(target) {
     const type = target.getAttribute("data-open");
     const id = target.getAttribute("data-id");
     if (!type || !id) return;
@@ -799,7 +873,8 @@
   }
 
   document.addEventListener("click", (e) => {
-    const a = e.target.closest('a[href^="#"]');
+    // Smooth-scroll for in-page anchors
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
     if (a) {
       const hash = a.getAttribute("href");
       const isNavLink = a.classList.contains("nav-link") || a.closest(".footer-links");
@@ -808,10 +883,40 @@
         scrollToHash(hash);
         if (document.body.classList.contains("nav-open") && isNavLink) toggleNav(false);
       }
+      return;
+    }
+
+    // Project carousel controls (inside modal)
+    const nextBtn = e.target.closest && e.target.closest('[data-carousel-next="true"]');
+    if (nextBtn) {
+      const wrap = nextBtn.closest('[data-carousel-wrap="project"]');
+      shiftCarousel(wrap, 1);
+      return;
+    }
+    const prevBtn = e.target.closest && e.target.closest('[data-carousel-prev="true"]');
+    if (prevBtn) {
+      const wrap = prevBtn.closest('[data-carousel-wrap="project"]');
+      shiftCarousel(wrap, -1);
+      return;
+    }
+    const thumbBtn = e.target.closest && e.target.closest("[data-carousel-thumb]");
+    if (thumbBtn) {
+      const wrap = thumbBtn.closest('[data-carousel-wrap="project"]');
+      const idx = parseInt(thumbBtn.getAttribute("data-carousel-thumb") || "0", 10);
+      setCarouselIndex(wrap, idx);
+      return;
+    }
+
+    // Close mobile nav when clicking outside (keeps language button usable)
+    if (document.body.classList.contains("nav-open")) {
+      const insideNav = e.target.closest && e.target.closest("#primaryNav");
+      const onToggle = e.target.closest && e.target.closest("#navToggle");
+      const onLang = e.target.closest && e.target.closest("#langToggle");
+      if (!insideNav && !onToggle && !onLang) toggleNav(false);
     }
 
     // Cards open
-    const card = e.target.closest("[data-open]");
+    const card = e.target.closest && e.target.closest("[data-open]");
     if (card) {
       handleCardActivate(card);
     }
@@ -820,6 +925,7 @@
     if (e.target && e.target.getAttribute && e.target.getAttribute("data-close-modal") === "true") {
       closeModal();
     }
+
     // Zoomable images (open lightbox)
     const zoomImg = e.target.closest && e.target.closest("img.zoomable");
     if (zoomImg && zoomImg.getAttribute("data-zoom-src")) {
@@ -834,8 +940,7 @@
       closeLightbox();
       return;
     }
-
-  });
+  });;
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal?.getAttribute("aria-hidden") === "false") {
@@ -846,6 +951,19 @@
       e.preventDefault();
       handleCardActivate(document.activeElement);
     }
+
+    // Carousel keyboard support (modal only)
+    if (modal?.getAttribute("aria-hidden") === "false") {
+      const isTyping = ["INPUT","TEXTAREA","SELECT"].includes((document.activeElement?.tagName || "").toUpperCase());
+      if (!isTyping) {
+        const wrap = modalBody?.querySelector && modalBody.querySelector('[data-carousel-wrap="project"]');
+        if (wrap) {
+          if (e.key === "ArrowRight") { shiftCarousel(wrap, 1); }
+          if (e.key === "ArrowLeft") { shiftCarousel(wrap, -1); }
+        }
+      }
+    }
+
   });
 
   modalClose?.addEventListener("click", closeModal);
