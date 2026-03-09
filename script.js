@@ -39,8 +39,11 @@
   const lightboxImg = document.getElementById("lightboxImg");
   const lightboxCanvas = document.getElementById("lightboxCanvas");
   const lightboxTitle = document.getElementById("lightboxTitle");
+  const lightboxCounter = document.getElementById("lightboxCounter");
   const lightboxHint = document.getElementById("lightboxHint");
   const lightboxClose = document.getElementById("lightboxClose");
+  const lightboxPrev = document.getElementById("lightboxPrev");
+  const lightboxNext = document.getElementById("lightboxNext");
   const zoomInBtn = document.getElementById("zoomInBtn");
   const zoomOutBtn = document.getElementById("zoomOutBtn");
 
@@ -469,6 +472,7 @@
   function applyLanguage() {
     setHtmlLang(lang);
     if (langPill) langPill.textContent = lang.toUpperCase();
+    updateNavToggleLabel(document.body.classList.contains("nav-open"));
 
     // Update static text nodes with data-i18n
     qsa("[data-i18n]").forEach((el) => {
@@ -490,6 +494,10 @@
     const url = buildWhatsappUrl(defaultText);
     if (fabWhatsapp) fabWhatsapp.href = url;
     if (directWhatsapp) directWhatsapp.href = url;
+
+    if (lightbox?.getAttribute("aria-hidden") === "false") {
+      updateLightboxControls();
+    }
   }
 
   /* =========================
@@ -747,10 +755,21 @@ function handleCardActivate(target) {
   /* =========================
      Mobile nav
   ========================= */
+  function updateNavToggleLabel(isOpen) {
+    if (!navToggle) return;
+    navToggle.setAttribute("aria-label", lang === "es"
+      ? (isOpen ? "Cerrar menú" : "Abrir menú")
+      : (isOpen ? "Close menu" : "Open menu"));
+  }
+
   function toggleNav(open) {
     const isOpen = typeof open === "boolean" ? open : !document.body.classList.contains("nav-open");
     document.body.classList.toggle("nav-open", isOpen);
+    nav?.classList.toggle("is-open", isOpen);
+    header?.classList.toggle("menu-open", isOpen);
+    nav?.setAttribute("aria-hidden", String(!isOpen));
     navToggle?.setAttribute("aria-expanded", String(isOpen));
+    updateNavToggleLabel(isOpen);
   }
 
   /* =========================
@@ -824,6 +843,12 @@ function handleCardActivate(target) {
   let lbDragging = false;
   let lbStartX = 0;
   let lbStartY = 0;
+  let lbPointerId = null;
+  let lbSwipeStartX = 0;
+  let lbSwipeStartY = 0;
+  let lbItems = [];
+  let lbIndex = 0;
+  let lbSync = null;
 
   function applyLightboxTransform() {
     if (!lightboxImg) return;
@@ -836,33 +861,150 @@ function handleCardActivate(target) {
     applyLightboxTransform();
   }
 
-  function openLightbox(src, title) {
-    if (!lightbox || !lightboxImg) return;
-    lbScale = 1; lbTx = 0; lbTy = 0;
-    lightboxImg.classList.remove("grabbing");
-    lightboxImg.src = src;
-    lightboxImg.alt = title || "Image";
-    if (lightboxTitle) lightboxTitle.textContent = title || "Image";
-    if (lightboxHint) {
-      lightboxHint.textContent = (lang === "es")
-        ? "Usa rueda/trackpad para zoom. Arrastra para mover."
-        : "Wheel/trackpad to zoom. Drag to pan.";
+  function getLightboxItemsFromElement(zoomImg) {
+    const fallbackSrc = zoomImg.getAttribute("data-zoom-src") || zoomImg.getAttribute("src") || "";
+    const fallbackTitle = zoomImg.getAttribute("alt") || "Image";
+
+    const carouselWrap = zoomImg.closest && zoomImg.closest('[data-carousel-wrap="project"]');
+    if (carouselWrap) {
+      const thumbs = qsa('.carousel-thumb', carouselWrap);
+      const baseTitle = fallbackTitle.replace(/\sphoto\s\d+$/i, "") || fallbackTitle;
+      const items = thumbs
+        .map((thumb, idx) => ({
+          src: thumb.getAttribute('data-src') || '',
+          title: `${baseTitle} photo ${idx + 1}`
+        }))
+        .filter(item => item.src);
+
+      const currentSrc = fallbackSrc;
+      const currentIndex = Math.max(0, items.findIndex(item => item.src === currentSrc));
+      return {
+        items: items.length ? items : [{ src: fallbackSrc, title: fallbackTitle }],
+        index: currentIndex,
+        sync: (nextIndex) => setCarouselIndex(carouselWrap, nextIndex)
+      };
     }
+
+    const gallery = zoomImg.closest && zoomImg.closest('.gallery');
+    if (gallery) {
+      const images = qsa('img.zoomable[data-zoom-src]', gallery);
+      const items = images
+        .map((img) => ({
+          src: img.getAttribute('data-zoom-src') || '',
+          title: img.getAttribute('alt') || 'Image'
+        }))
+        .filter(item => item.src);
+      const currentIndex = Math.max(0, items.findIndex(item => item.src === fallbackSrc));
+      return {
+        items: items.length ? items : [{ src: fallbackSrc, title: fallbackTitle }],
+        index: currentIndex,
+        sync: null
+      };
+    }
+
+    return {
+      items: [{ src: fallbackSrc, title: fallbackTitle }],
+      index: 0,
+      sync: null
+    };
+  }
+
+  function updateLightboxControls() {
+    const total = lbItems.length || 1;
+    const hasMultiple = total > 1;
+
+    if (lightboxCounter) lightboxCounter.textContent = `${Math.min(lbIndex + 1, total)} / ${total}`;
+    if (lightboxPrev) lightboxPrev.setAttribute('aria-label', lang === 'es' ? 'Imagen anterior' : 'Previous image');
+    if (lightboxNext) lightboxNext.setAttribute('aria-label', lang === 'es' ? 'Siguiente imagen' : 'Next image');
+    if (lightboxClose) lightboxClose.setAttribute('aria-label', lang === 'es' ? 'Cerrar visor' : 'Close viewer');
+    if (zoomInBtn) zoomInBtn.setAttribute('aria-label', lang === 'es' ? 'Acercar' : 'Zoom in');
+    if (zoomOutBtn) zoomOutBtn.setAttribute('aria-label', lang === 'es' ? 'Alejar' : 'Zoom out');
+
+    [lightboxPrev, lightboxNext].forEach((btn) => {
+      if (!btn) return;
+      btn.disabled = !hasMultiple;
+      btn.classList.toggle('is-hidden', !hasMultiple);
+      btn.setAttribute('aria-hidden', hasMultiple ? 'false' : 'true');
+    });
+
+    if (lightboxHint) {
+      lightboxHint.textContent = (lang === 'es')
+        ? (hasMultiple
+            ? 'Desliza o usa las flechas para cambiar de imagen. Usa zoom y, al ampliar, arrastra para mover.'
+            : 'Usa zoom y, al ampliar, arrastra para mover la imagen.')
+        : (hasMultiple
+            ? 'Swipe or use the arrows to browse images. Zoom in, then drag to pan.'
+            : 'Use zoom, then drag to pan the image when enlarged.');
+    }
+  }
+
+  function renderLightboxImage() {
+    if (!lightboxImg || !lbItems.length) return;
+    const safeIndex = ((lbIndex % lbItems.length) + lbItems.length) % lbItems.length;
+    lbIndex = safeIndex;
+    const current = lbItems[safeIndex];
+
+    lbScale = 1;
+    lbTx = 0;
+    lbTy = 0;
+    lightboxImg.classList.remove('grabbing');
+    lightboxImg.src = current.src;
+    lightboxImg.alt = current.title || 'Image';
+    if (lightboxTitle) lightboxTitle.textContent = current.title || 'Image';
     applyLightboxTransform();
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.classList.add("no-scroll");
+    updateLightboxControls();
+
+    if (typeof lbSync === 'function') lbSync(safeIndex);
+  }
+
+  function openLightbox(payload, maybeTitle) {
+    if (!lightbox || !lightboxImg) return;
+
+    if (typeof payload === 'string') {
+      lbItems = [{ src: payload, title: maybeTitle || 'Image' }];
+      lbIndex = 0;
+      lbSync = null;
+    } else {
+      lbItems = Array.isArray(payload?.items) && payload.items.length
+        ? payload.items.filter(item => item && item.src)
+        : [];
+      lbIndex = Number.isFinite(payload?.index) ? payload.index : 0;
+      lbSync = typeof payload?.sync === 'function' ? payload.sync : null;
+
+      if (!lbItems.length && payload?.src) {
+        lbItems = [{ src: payload.src, title: payload.title || 'Image' }];
+        lbIndex = 0;
+      }
+    }
+
+    if (!lbItems.length) return;
+
+    renderLightboxImage();
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
     setTimeout(() => lightboxClose?.focus(), 30);
   }
 
   function closeLightbox() {
     if (!lightbox) return;
-    lightbox.setAttribute("aria-hidden", "true");
-    if (lightboxImg) lightboxImg.src = "";
-    const modalOpen = modal && modal.getAttribute("aria-hidden") === "false";
-    if (!modalOpen) document.body.classList.remove("no-scroll");
+    lightbox.setAttribute('aria-hidden', 'true');
+    if (lightboxImg) lightboxImg.src = '';
+    lbItems = [];
+    lbIndex = 0;
+    lbSync = null;
+    lbDragging = false;
+    lbPointerId = null;
+    const modalOpen = modal && modal.getAttribute('aria-hidden') === 'false';
+    if (!modalOpen) document.body.classList.remove('no-scroll');
   }
 
   function zoomBy(delta) { setScale(lbScale + delta); }
+
+  function navigateLightbox(delta) {
+    if (!lbItems.length || lbItems.length < 2) return;
+    lbIndex = (lbIndex + delta + lbItems.length) % lbItems.length;
+    renderLightboxImage();
+  }
 
   /* =========================
      Events
@@ -929,9 +1071,7 @@ function handleCardActivate(target) {
     // Zoomable images (open lightbox)
     const zoomImg = e.target.closest && e.target.closest("img.zoomable");
     if (zoomImg && zoomImg.getAttribute("data-zoom-src")) {
-      const src = zoomImg.getAttribute("data-zoom-src");
-      const title = zoomImg.getAttribute("alt") || "Image";
-      openLightbox(src, title);
+      openLightbox(getLightboxItemsFromElement(zoomImg));
       return;
     }
 
@@ -943,6 +1083,21 @@ function handleCardActivate(target) {
   });;
 
   document.addEventListener("keydown", (e) => {
+    if (lightbox?.getAttribute("aria-hidden") === "false") {
+      if (e.key === "Escape") {
+        closeLightbox();
+        return;
+      }
+      if (e.key === "ArrowRight") {
+        navigateLightbox(1);
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        navigateLightbox(-1);
+        return;
+      }
+    }
+
     if (e.key === "Escape" && modal?.getAttribute("aria-hidden") === "false") {
       closeModal();
     }
@@ -969,10 +1124,12 @@ function handleCardActivate(target) {
   modalClose?.addEventListener("click", closeModal);
 
   lightboxClose?.addEventListener("click", closeLightbox);
+  lightboxPrev?.addEventListener("click", () => navigateLightbox(-1));
+  lightboxNext?.addEventListener("click", () => navigateLightbox(1));
   zoomInBtn?.addEventListener("click", () => zoomBy(0.25));
   zoomOutBtn?.addEventListener("click", () => zoomBy(-0.25));
 
-  // Lightbox interactions: wheel zoom + drag pan
+  // Lightbox interactions: wheel zoom + drag pan + swipe navigation
   lightboxCanvas?.addEventListener("wheel", (e) => {
     if (lightbox?.getAttribute("aria-hidden") !== "false") return;
     e.preventDefault();
@@ -982,16 +1139,23 @@ function handleCardActivate(target) {
 
   lightboxCanvas?.addEventListener("pointerdown", (e) => {
     if (lightbox?.getAttribute("aria-hidden") !== "false") return;
-    if (lbScale <= 1) return;
-    lbDragging = true;
+    if (e.target.closest && e.target.closest('.lightbox-nav')) return;
+
+    lbPointerId = e.pointerId;
     lbStartX = e.clientX;
     lbStartY = e.clientY;
-    lightboxImg?.classList.add("grabbing");
+    lbSwipeStartX = e.clientX;
+    lbSwipeStartY = e.clientY;
+    lbDragging = lbScale > 1;
+
+    if (lbDragging) lightboxImg?.classList.add("grabbing");
     lightboxCanvas.setPointerCapture(e.pointerId);
   });
 
   lightboxCanvas?.addEventListener("pointermove", (e) => {
+    if (lbPointerId !== e.pointerId) return;
     if (!lbDragging) return;
+
     const dx = e.clientX - lbStartX;
     const dy = e.clientY - lbStartY;
     lbStartX = e.clientX;
@@ -1001,13 +1165,28 @@ function handleCardActivate(target) {
     applyLightboxTransform();
   });
 
-  lightboxCanvas?.addEventListener("pointerup", () => {
-    lbDragging = false;
-    lightboxImg?.classList.remove("grabbing");
-  });
+  function finishLightboxPointer(e) {
+    if (lbPointerId !== e.pointerId) return;
 
-  lightboxCanvas?.addEventListener("pointercancel", () => {
+    const dx = e.clientX - lbSwipeStartX;
+    const dy = e.clientY - lbSwipeStartY;
+    const isSwipe = lbScale === 1 && Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2;
+
+    if (isSwipe) {
+      navigateLightbox(dx < 0 ? 1 : -1);
+    }
+
     lbDragging = false;
+    lbPointerId = null;
+    lightboxImg?.classList.remove("grabbing");
+  }
+
+  lightboxCanvas?.addEventListener("pointerup", finishLightboxPointer);
+
+  lightboxCanvas?.addEventListener("pointercancel", (e) => {
+    if (lbPointerId !== e.pointerId) return;
+    lbDragging = false;
+    lbPointerId = null;
     lightboxImg?.classList.remove("grabbing");
   });
 

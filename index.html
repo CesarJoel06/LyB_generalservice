@@ -53,7 +53,7 @@
           <span class="lang-caption" data-i18n="langToggleCaption">ES / EN</span>
         </button>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar" aria-hidden="true"></span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
@@ -412,7 +412,10 @@
     <div class="lightbox-backdrop" data-close-lightbox="true"></div>
     <div class="lightbox-panel" role="document" aria-label="Image viewer">
       <div class="lightbox-topbar">
-        <div class="lightbox-title" id="lightboxTitle">Image</div>
+        <div class="lightbox-title-group">
+          <div class="lightbox-title" id="lightboxTitle">Image</div>
+          <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+        </div>
         <div class="lightbox-actions" aria-label="Zoom controls">
           <button class="icon-btn" type="button" id="zoomOutBtn" aria-label="Zoom out">
             <img src="assets/icons/icon-zoom-out.svg" alt="" aria-hidden="true" />
@@ -427,10 +430,16 @@
       </div>
 
       <div class="lightbox-canvas" id="lightboxCanvas" aria-label="Zoomable image area">
+        <button class="lightbox-nav prev" type="button" id="lightboxPrev" aria-label="Previous image">
+          <img src="assets/icons/icon-chevron-left.svg" alt="" aria-hidden="true" />
+        </button>
         <img id="lightboxImg" src="" alt="" />
+        <button class="lightbox-nav next" type="button" id="lightboxNext" aria-label="Next image">
+          <img src="assets/icons/icon-chevron-right.svg" alt="" aria-hidden="true" />
+        </button>
       </div>
 
-      <div class="lightbox-hint" id="lightboxHint">Wheel/Trackpad to zoom. Drag to pan.</div>
+      <div class="lightbox-hint" id="lightboxHint">Swipe to browse. Use wheel/trackpad to zoom. Drag to pan.</div>
     </div>
   </div>
 
