@@ -930,11 +930,11 @@ function handleCardActivate(target) {
     if (lightboxHint) {
       lightboxHint.textContent = (lang === 'es')
         ? (hasMultiple
-            ? 'Desliza o usa las flechas para cambiar de imagen. Usa zoom y, al ampliar, arrastra para mover.'
-            : 'Usa zoom y, al ampliar, arrastra para mover la imagen.')
+            ? 'Desliza a los lados o usa las flechas para cambiar de imagen. Desliza hacia abajo para volver a la galería. Usa zoom y, al ampliar, arrastra para mover.'
+            : 'Desliza hacia abajo para volver a la galería. Usa zoom y, al ampliar, arrastra para mover la imagen.')
         : (hasMultiple
-            ? 'Swipe or use the arrows to browse images. Zoom in, then drag to pan.'
-            : 'Use zoom, then drag to pan the image when enlarged.');
+            ? 'Swipe sideways or use the arrows to browse images. Swipe down to return to the gallery. Zoom in, then drag to pan.'
+            : 'Swipe down to return to the gallery. Use zoom, then drag to pan the image when enlarged.');
     }
   }
 
@@ -1170,10 +1170,13 @@ function handleCardActivate(target) {
 
     const dx = e.clientX - lbSwipeStartX;
     const dy = e.clientY - lbSwipeStartY;
-    const isSwipe = lbScale === 1 && Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2;
+    const isHorizontalSwipe = lbScale === 1 && Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2;
+    const isVerticalCloseSwipe = lbScale === 1 && dy > 88 && Math.abs(dy) > Math.abs(dx) * 1.15;
 
-    if (isSwipe) {
+    if (isHorizontalSwipe) {
       navigateLightbox(dx < 0 ? 1 : -1);
+    } else if (isVerticalCloseSwipe) {
+      closeLightbox();
     }
 
     lbDragging = false;

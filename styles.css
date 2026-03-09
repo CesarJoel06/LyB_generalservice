@@ -785,6 +785,10 @@ button, input, select, textarea{font:inherit}
   inset: 0;
   display:none;
   z-index: 2000;
+  overflow-y:auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 0 max(12px, env(safe-area-inset-bottom));
 }
 .modal[aria-hidden="false"]{display:block;}
 .modal-backdrop{
@@ -798,7 +802,10 @@ button, input, select, textarea{font:inherit}
   border-radius: 20px;
   background: var(--white);
   box-shadow: var(--shadow-lg);
-  overflow:hidden;
+  overflow:auto;
+  max-height: calc(100dvh - var(--header-h) - 36px);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   border: 1px solid rgba(0,0,0,.10);
 }
 .modal-close{
@@ -818,6 +825,7 @@ button, input, select, textarea{font:inherit}
 .modal-close:hover{transform: translateY(-1px); box-shadow: var(--shadow-sm);}
 .modal-body{
   padding: 18px;
+  min-height: 0;
 }
 .modal-head{
   display:flex;
@@ -918,6 +926,7 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
   .modal-panel{
     width: min(920px, calc(100% - 18px));
     margin: calc(var(--header-h) + 14px) auto 14px;
+    max-height: calc(100dvh - var(--header-h) - 20px);
   }
   .modal-body{padding: 16px;}
   .modal-head{flex-direction:column;}
@@ -970,6 +979,7 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
     width: calc(100% - 14px);
     margin: calc(var(--header-h) + 10px) auto 10px;
     border-radius: 18px;
+    max-height: calc(100dvh - var(--header-h) - 14px);
   }
   .modal-close{top: 10px; right: 10px;}
   .modal-body{padding: 14px;}
@@ -1069,6 +1079,9 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
   inset: 0;
   display:none;
   z-index: 2500;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 .lightbox[aria-hidden="false"]{display:block;}
 .lightbox-backdrop{
@@ -1083,6 +1096,9 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
   background: rgba(255,255,255,.98);
   box-shadow: var(--shadow-lg);
   overflow:hidden;
+  max-height: calc(100dvh - var(--header-h) - 24px);
+  display:flex;
+  flex-direction:column;
   border: 1px solid rgba(255,255,255,.12);
 }
 .lightbox-topbar{
@@ -1139,6 +1155,7 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
   position:relative;
   width: 100%;
   height: min(70vh, 720px);
+  min-height: 280px;
   background: #0b1b2e;
   overflow:hidden;
   touch-action: none;
@@ -1163,7 +1180,7 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
   width: 52px;
   height: 52px;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.18);
+  border: 2px solid rgba(255,255,255,.95);
   background: rgba(0,0,0,.38);
   color: #fff;
   cursor:pointer;
@@ -1194,6 +1211,7 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
     width: calc(100% - 10px);
     margin: max(8px, env(safe-area-inset-top)) auto max(8px, env(safe-area-inset-bottom));
     border-radius: 18px;
+    max-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(16px, env(safe-area-inset-bottom)));
   }
   .lightbox-topbar{
     padding: 10px 12px;
@@ -1222,6 +1240,7 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
   .lightbox-nav.next{right: 12px;}
   .lightbox-canvas{
     height: min(64vh, 520px);
+    min-height: 240px;
   }
   .lightbox-hint{
     padding: 8px 12px 12px;
@@ -1260,7 +1279,7 @@ section{scroll-margin-top: calc(var(--header-h) + 12px);}
   width: 46px;
   height: 46px;
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.18);
+  border: 2px solid rgba(255,255,255,.95);
   background: rgba(0,0,0,.35);
   color: #fff;
   cursor:pointer;
