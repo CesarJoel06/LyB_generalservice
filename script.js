@@ -69,6 +69,65 @@
     "assets/services/gallery-5.jpg",
   ];
 
+  const serviceGalleries = {
+    residential: [
+      "assets/services/service-1.jpg",
+      "assets/services/gallery-3.jpg",
+      "assets/projects/project-5.jpg",
+      "assets/projects/project-10.jpg",
+      "assets/projects/gallery-3.jpg"
+    ],
+    "kitchen-bath": [
+      "assets/services/service-2.jpg",
+      "assets/services/gallery-2.jpg",
+      "assets/projects/project-1.jpg",
+      "assets/projects/project-2.jpg",
+      "assets/projects/project-14.jpg"
+    ],
+    additions: [
+      "assets/services/service-3.jpg",
+      "assets/projects/project-3.jpg",
+      "assets/projects/project-9.jpg",
+      "assets/projects/project-15.jpg",
+      "assets/projects/gallery-4.jpg"
+    ],
+    repairs: [
+      "assets/services/service-4.jpg",
+      "assets/projects/project-8.jpg",
+      "assets/projects/gallery-5.jpg",
+      "assets/projects/project-16.jpg",
+      "assets/services/gallery-3.jpg"
+    ],
+    plumbing: [
+      "assets/services/service-5.jpg",
+      "assets/services/gallery-1.jpg",
+      "assets/projects/project-7.jpg",
+      "assets/projects/gallery-1.jpg",
+      "assets/projects/project-4.jpg"
+    ],
+    hvac: [
+      "assets/services/service-6.jpg",
+      "assets/services/gallery-5.jpg",
+      "assets/projects/project-12.jpg",
+      "assets/projects/gallery-7.jpg",
+      "assets/projects/project-16.jpg"
+    ],
+    masonry: [
+      "assets/services/service-7.jpg",
+      "assets/services/gallery-4.jpg",
+      "assets/projects/project-11.jpg",
+      "assets/projects/gallery-6.jpg",
+      "assets/projects/project-5.jpg"
+    ],
+    restoration: [
+      "assets/services/service-8.jpg",
+      "assets/projects/project-13.jpg",
+      "assets/projects/gallery-8.jpg",
+      "assets/projects/gallery-5.jpg",
+      "assets/projects/project-16.jpg"
+    ]
+  };
+
   const projectGallery = [
     "assets/projects/gallery-1.jpg",
     "assets/projects/gallery-2.jpg",
@@ -94,7 +153,7 @@
         es: "Desde cimentación y estructura hasta interiores y entrega final. Priorizamos seguridad, orden en obra y comunicación constante. Ideal para propietarios e inversionistas que buscan una ejecución confiable y bien documentada.",
         en: "From foundation and framing to interiors and final handoff. We prioritize safety, jobsite cleanliness, and clear communication. Ideal for homeowners and investors looking for reliable, well-documented execution."
       },
-      gallery: serviceGallery
+      gallery: serviceGalleries.residential
     },
     {
       id: "kitchen-bath",
@@ -109,7 +168,7 @@
         es: "Trabajamos con una propuesta clara: demolición controlada, instalaciones, revestimientos, mobiliario y detalles. Entregamos un espacio moderno y práctico sin perder de vista el presupuesto.",
         en: "We follow a clear scope: controlled demo, rough-ins, tile/finishes, cabinetry, and final details. You get a modern, practical space while staying mindful of budget."
       },
-      gallery: serviceGallery
+      gallery: serviceGalleries["kitchen-bath"]
     },
     {
       id: "additions",
@@ -124,7 +183,7 @@
         es: "Definimos alcance, materiales y tiempos; protegemos áreas habitadas y ejecutamos por etapas. Ideal si necesitas más espacio sin mudarte.",
         en: "We define scope, materials, and timeline; we protect lived-in areas and build in phases. Perfect if you need more space without moving."
       },
-      gallery: serviceGallery
+      gallery: serviceGalleries.additions
     },
     {
       id: "repairs",
@@ -139,7 +198,7 @@
         es: "Diagnosticamos la causa, proponemos alternativas y dejamos todo limpio. Perfecto para mantenimiento preventivo y correcciones antes de una venta o renta.",
         en: "We diagnose the cause, propose options, and leave everything clean. Great for preventative maintenance and pre-sale or rental-ready fixes."
       },
-      gallery: serviceGallery
+      gallery: serviceGalleries.repairs
     },
     {
       id: "plumbing",
@@ -154,7 +213,7 @@
         es: "Coordinamos con el alcance del proyecto (remodelación o reparación) para evitar retrabajos. Documentamos cambios y dejamos recomendaciones de mantenimiento.",
         en: "We coordinate plumbing with the full scope (remodel or repair) to avoid rework. We document changes and provide maintenance recommendations."
       },
-      gallery: serviceGallery
+      gallery: serviceGalleries.plumbing
     },
     {
       id: "hvac",
@@ -169,7 +228,7 @@
         es: "Aseguramos una integración correcta con obra civil y acabados, cuidando ventilación, sellos y accesos para mantenimiento.",
         en: "We ensure proper integration with construction and finishes—ventilation, sealing, and service access included."
       },
-      gallery: serviceGallery
+      gallery: serviceGalleries.hvac
     },
     {
       id: "masonry",
@@ -184,7 +243,7 @@
         es: "Aplicamos técnicas y materiales adecuados a clima y uso. Ideal para mejoras de fachada, refuerzos y restauraciones puntuales.",
         en: "We use methods and materials suited to climate and use. Great for facade upgrades, reinforcements, and targeted restorations."
       },
-      gallery: serviceGallery
+      gallery: serviceGalleries.masonry
     },
     {
       id: "restoration",
@@ -199,28 +258,89 @@
         es: "Priorizamos seguridad, control de humedad y recuperación estética. Proceso ordenado para que el espacio vuelva a estar operativo.",
         en: "We prioritize safety, humidity control, and a clean visual restore. An organized process to bring the space back to usable quickly."
       },
-      gallery: serviceGallery
+      gallery: serviceGalleries.restoration
     },
   ];
 
-  const projects = Array.from({ length: 16 }, (_, i) => {
+  const projectCatalog = [
+    {
+      es: { title: "Baño principal contemporáneo", desc: "Renovación demo con enchape moderno, nueva grifería, mueble suspendido e iluminación funcional.", duration: "3–4 semanas", type: "Baño", location: "Orlando, FL (demo)" },
+      en: { title: "Contemporary Primary Bathroom", desc: "Demo renovation with modern tile, new fixtures, floating vanity, and practical lighting.", duration: "3–4 weeks", type: "Bathroom", location: "Orlando, FL (demo)" }
+    },
+    {
+      es: { title: "Cocina integral familiar", desc: "Actualización demo de cocina con mejor flujo, nuevos muebles, cubierta y acabados de fácil mantenimiento.", duration: "5–7 semanas", type: "Cocina", location: "Kissimmee, FL (demo)" },
+      en: { title: "Family Kitchen Remodel", desc: "Demo kitchen update with improved flow, new cabinetry, countertop, and easy-care finishes.", duration: "5–7 weeks", type: "Kitchen", location: "Kissimmee, FL (demo)" }
+    },
+    {
+      es: { title: "Ampliación de dormitorio", desc: "Proyecto demo para ganar un ambiente adicional con integración visual a la vivienda existente.", duration: "6–8 semanas", type: "Ampliación", location: "Orlando, FL (demo)" },
+      en: { title: "Bedroom Addition", desc: "Demo addition project to gain an extra room with visual continuity to the existing home.", duration: "6–8 weeks", type: "Addition", location: "Orlando, FL (demo)" }
+    },
+    {
+      es: { title: "Patio y área de lavandería", desc: "Adecuación demo de patio utilitario con conexiones sanitarias, lavadero y superficies resistentes.", duration: "2–3 semanas", type: "Exterior utilitario", location: "Poinciana, FL (demo)" },
+      en: { title: "Patio & Laundry Area", desc: "Demo utility patio upgrade with plumbing connections, sink, and durable finishes.", duration: "2–3 weeks", type: "Utility exterior", location: "Poinciana, FL (demo)" }
+    },
+    {
+      es: { title: "Renovación de fachada", desc: "Mejora demo del frente de vivienda con pintura, detalles de albañilería y presencia visual renovada.", duration: "2–4 semanas", type: "Fachada", location: "Winter Garden, FL (demo)" },
+      en: { title: "Facade Renovation", desc: "Demo curb-appeal upgrade with paint, masonry details, and a cleaner front elevation.", duration: "2–4 weeks", type: "Facade", location: "Winter Garden, FL (demo)" }
+    },
+    {
+      es: { title: "Baño social optimizado", desc: "Reconfiguración demo para maximizar espacio, almacenamiento y confort visual en un baño pequeño.", duration: "2–3 semanas", type: "Baño", location: "Orlando, FL (demo)" },
+      en: { title: "Optimized Guest Bathroom", desc: "Demo reconfiguration to maximize space, storage, and visual comfort in a compact bathroom.", duration: "2–3 weeks", type: "Bathroom", location: "Orlando, FL (demo)" }
+    },
+    {
+      es: { title: "Instalación sanitaria completa", desc: "Ejecución demo de líneas, accesorios y pruebas para cocina, baño o zona de servicio.", duration: "1–2 semanas", type: "Sanitaria", location: "Kissimmee, FL (demo)" },
+      en: { title: "Full Plumbing Installation", desc: "Demo execution of lines, fixtures, and testing for kitchen, bathroom, or service areas.", duration: "1–2 weeks", type: "Plumbing", location: "Kissimmee, FL (demo)" }
+    },
+    {
+      es: { title: "Oficina en casa remodelada", desc: "Actualización demo de ambiente interior con reparaciones, pintura y acabado listo para uso diario.", duration: "2–3 semanas", type: "Interior", location: "St. Cloud, FL (demo)" },
+      en: { title: "Home Office Refresh", desc: "Demo interior upgrade with repairs, paint, and a ready-to-use finish for daily work.", duration: "2–3 weeks", type: "Interior", location: "St. Cloud, FL (demo)" }
+    },
+    {
+      es: { title: "Área BBQ y terraza", desc: "Proyecto demo exterior con ampliación ligera y adecuación para reuniones familiares.", duration: "4–6 semanas", type: "Terraza", location: "Davenport, FL (demo)" },
+      en: { title: "BBQ Area & Terrace", desc: "Demo outdoor project with light expansion and a setup for family gatherings.", duration: "4–6 weeks", type: "Terrace", location: "Davenport, FL (demo)" }
+    },
+    {
+      es: { title: "Sala-comedor renovada", desc: "Remodelación demo enfocada en continuidad visual, iluminación y sensación de amplitud.", duration: "3–5 semanas", type: "Interior", location: "Orlando, FL (demo)" },
+      en: { title: "Living-Dining Renovation", desc: "Demo remodel focused on visual continuity, lighting, and a more spacious feel.", duration: "3–5 weeks", type: "Interior", location: "Orlando, FL (demo)" }
+    },
+    {
+      es: { title: "Muro decorativo interior", desc: "Intervención demo de albañilería fina para dar carácter y textura a un ambiente principal.", duration: "1–2 semanas", type: "Albañilería", location: "Celebration, FL (demo)" },
+      en: { title: "Interior Feature Wall", desc: "Demo fine masonry intervention adding character and texture to a main living space.", duration: "1–2 weeks", type: "Masonry", location: "Celebration, FL (demo)" }
+    },
+    {
+      es: { title: "Sistema HVAC residencial", desc: "Adecuación demo de ductería y ventilación para un confort térmico más uniforme.", duration: "2–4 semanas", type: "HVAC", location: "Lake Nona, FL (demo)" },
+      en: { title: "Residential HVAC Upgrade", desc: "Demo duct and ventilation upgrade for more consistent indoor comfort.", duration: "2–4 weeks", type: "HVAC", location: "Lake Nona, FL (demo)" }
+    },
+    {
+      es: { title: "Recuperación por filtración", desc: "Proyecto demo de saneamiento y recuperación visual después de una fuga o humedad localizada.", duration: "1–3 semanas", type: "Restauración", location: "Orlando, FL (demo)" },
+      en: { title: "Leak Damage Recovery", desc: "Demo sanitation and visual recovery project after a leak or localized moisture issue.", duration: "1–3 weeks", type: "Restoration", location: "Orlando, FL (demo)" }
+    },
+    {
+      es: { title: "Cocina compacta moderna", desc: "Remodelación demo de cocina pequeña con mejor almacenamiento, superficies limpias y look actual.", duration: "4–6 semanas", type: "Cocina", location: "Kissimmee, FL (demo)" },
+      en: { title: "Modern Compact Kitchen", desc: "Demo small-kitchen remodel with better storage, clean surfaces, and an updated look.", duration: "4–6 weeks", type: "Kitchen", location: "Kissimmee, FL (demo)" }
+    },
+    {
+      es: { title: "Garaje convertido en estudio", desc: "Conversión demo de garaje a ambiente útil con refuerzos, acabados y nueva distribución.", duration: "6–8 semanas", type: "Conversión", location: "Poinciana, FL (demo)" },
+      en: { title: "Garage-to-Studio Conversion", desc: "Demo garage conversion into a functional room with upgrades, finishes, and a new layout.", duration: "6–8 weeks", type: "Conversion", location: "Poinciana, FL (demo)" }
+    },
+    {
+      es: { title: "Remodelación integral de vivienda", desc: "Proyecto demo completo con mejoras coordinadas en interiores, instalaciones y acabados.", duration: "8–12 semanas", type: "Integral", location: "Orlando, FL (demo)" },
+      en: { title: "Full Home Renovation", desc: "Full demo project with coordinated upgrades to interiors, systems, and finishes.", duration: "8–12 weeks", type: "Whole-home", location: "Orlando, FL (demo)" }
+    }
+  ];
+
+  const projects = projectCatalog.slice(0, 8).map((project, i) => {
     const n = i + 1;
     return {
       id: `p${n}`,
       img: `assets/projects/project-${n}.jpg`,
-      title: {
-        es: `Proyecto ${n}: Renovación residencial`,
-        en: `Project ${n}: Residential Renovation`
-      },
-      desc: {
-        es: "Proyecto demo: remodelación con mejoras de distribución, acabados y eficiencia. Incluye coordinación de rubros y control de calidad.",
-        en: "Demo project: renovation with layout, finish, and efficiency upgrades. Includes trade coordination and quality control."
-      },
+      title: { es: project.es.title, en: project.en.title },
+      desc: { es: project.es.desc, en: project.en.desc },
       details: {
-        es: { duration: "4–8 semanas", type: "Remodelación", location: "Orlando, FL (genérico)" },
-        en: { duration: "4–8 weeks", type: "Remodel", location: "Orlando, FL (generic)" }
+        es: { duration: project.es.duration, type: project.es.type, location: project.es.location },
+        en: { duration: project.en.duration, type: project.en.type, location: project.en.location }
       },
-      gallery: projectGallery.slice(0, 6 + (n % 3)) // 6–8 images
+      gallery: projectGallery.slice(0, 6 + (n % 3))
     };
   });
 
@@ -278,7 +398,7 @@
       servicesSubtitle: "Selecciona un servicio para ver detalles y galería de imágenes.",
 
       projectsTitle: "Proyectos",
-      projectsSubtitle: "16 ejemplos de proyectos (demo). Haz clic para abrir el detalle con galería.",
+      projectsSubtitle: "8 ejemplos de proyectos (demo). Haz clic para abrir el detalle con galería.",
 
       processTitle: "Proceso",
       processSubtitle: "Un flujo claro para evitar sorpresas y asegurar entregas consistentes.",
@@ -376,7 +496,7 @@
       servicesSubtitle: "Select a service to view details and an image gallery.",
 
       projectsTitle: "Projects",
-      projectsSubtitle: "16 sample projects (demo). Click to open details with gallery.",
+      projectsSubtitle: "8 sample projects (demo). Click to open details with gallery.",
 
       processTitle: "Process",
       processSubtitle: "A clear workflow to avoid surprises and ensure consistent delivery.",
@@ -930,11 +1050,11 @@ function handleCardActivate(target) {
     if (lightboxHint) {
       lightboxHint.textContent = (lang === 'es')
         ? (hasMultiple
-            ? 'Desliza a los lados o usa las flechas para cambiar de imagen. Desliza hacia abajo para volver a la galería. Usa zoom y, al ampliar, arrastra para mover.'
-            : 'Desliza hacia abajo para volver a la galería. Usa zoom y, al ampliar, arrastra para mover la imagen.')
+            ? 'Desliza o usa las flechas para cambiar de imagen. Usa zoom y, al ampliar, arrastra para mover.'
+            : 'Usa zoom y, al ampliar, arrastra para mover la imagen.')
         : (hasMultiple
-            ? 'Swipe sideways or use the arrows to browse images. Swipe down to return to the gallery. Zoom in, then drag to pan.'
-            : 'Swipe down to return to the gallery. Use zoom, then drag to pan the image when enlarged.');
+            ? 'Swipe or use the arrows to browse images. Zoom in, then drag to pan.'
+            : 'Use zoom, then drag to pan the image when enlarged.');
     }
   }
 
@@ -1170,13 +1290,10 @@ function handleCardActivate(target) {
 
     const dx = e.clientX - lbSwipeStartX;
     const dy = e.clientY - lbSwipeStartY;
-    const isHorizontalSwipe = lbScale === 1 && Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2;
-    const isVerticalCloseSwipe = lbScale === 1 && dy > 88 && Math.abs(dy) > Math.abs(dx) * 1.15;
+    const isSwipe = lbScale === 1 && Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.2;
 
-    if (isHorizontalSwipe) {
+    if (isSwipe) {
       navigateLightbox(dx < 0 ? 1 : -1);
-    } else if (isVerticalCloseSwipe) {
-      closeLightbox();
     }
 
     lbDragging = false;
